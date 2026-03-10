@@ -1,0 +1,160 @@
+@model CreateAppointmentViewModel
+@{
+    ViewData["Title"] = "Create Appointment";
+}
+
+<h1 class="mb-4">Create Appointment</h1>
+
+<form asp-action="CreateAppointment" method="post" id="createAppointmentForm">
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Patient Information</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="Patient.Name" class="form-label"></label>
+                    <input asp-for="Patient.Name" class="form-control" placeholder="Full name" />
+                    <span asp-validation-for="Patient.Name" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="Patient.BirthDate" class="form-label"></label>
+                    <input asp-for="Patient.BirthDate" type="date" class="form-control" />
+                    <span asp-validation-for="Patient.BirthDate" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="Patient.Phone" class="form-label"></label>
+                    <input asp-for="Patient.Phone" class="form-control" placeholder="Phone number" />
+                    <span asp-validation-for="Patient.Phone" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Patient.Email" class="form-label"></label>
+                    <input asp-for="Patient.Email" class="form-control" placeholder="Optional" />
+                    <span asp-validation-for="Patient.Email" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Patient.Address" class="form-label"></label>
+                    <input asp-for="Patient.Address" class="form-control" placeholder="Optional" />
+                    <span asp-validation-for="Patient.Address" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Appointment Details</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="SelectedDoctorId" class="form-label"></label>
+                    <select asp-for="SelectedDoctorId" class="form-select" id="doctorSelect">
+                        <option value="">-- Select Doctor --</option>
+                        @foreach (var doctor in Model.Doctors)
+                        {
+                            <option value="@doctor.DoctorId">@doctor.DisplayName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SelectedDoctorId" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="AppointmentDate" class="form-label"></label>
+                    <input asp-for="AppointmentDate" type="date" class="form-control" id="appointmentDate" />
+                    <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="SelectedTimeSlot" class="form-label"></label>
+                    <select asp-for="SelectedTimeSlot" class="form-select" id="timeSlotSelect">
+                        <option value="">-- Select Time --</option>
+                        @foreach (var slot in Model.AvailableSlots)
+                        {
+                            <option value="@slot.Value">@slot.DisplayText</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SelectedTimeSlot" class="text-danger"></span>
+                    <small class="form-text text-muted" id="slotHint">Select doctor and date to load available slots</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Save Appointment</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const doctorSelect = document.getElementById('doctorSelect');
+            const dateInput = document.getElementById('appointmentDate');
+            const timeSlotSelect = document.getElementById('timeSlotSelect');
+            const slotHint = document.getElementById('slotHint');
+
+            // Set minimum date to today solve logical Error which is select old date. 
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+            
+            function filterFutureSlots(slots) {
+                const now = new Date();
+                const selectedDate = new Date(dateInput.value);
+                const isToday = selectedDate.toDateString() === now.toDateString();
+
+                if (!isToday) {
+                    return slots;
+                }
+
+                const currentTime = now.getHours().toString().padStart(2, '0') + ':' + 
+                                    now.getMinutes().toString().padStart(2, '0');
+
+                return slots.filter(slot => slot.value > currentTime);
+            }
+
+            function loadAvailableSlots() {
+                const doctorId = parseInt(doctorSelect.value);
+                const date = dateInput.value;
+
+                timeSlotSelect.innerHTML = '<option value="">-- Select Time --</option>';
+                slotHint.textContent = 'Loading...';
+
+                if (!doctorId || !date) {
+                    slotHint.textContent = 'Select doctor and date to load available slots';
+                    return;
+                }
+
+                fetch(`/Secretary/GetAvailableSlots?doctorId=${doctorId}&date=${encodeURIComponent(date)}`)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Failed to load slots');
+                        return response.json();
+                    })
+                    .then(slots => {
+                        const futureSlots = filterFutureSlots(slots);
+
+                        if (futureSlots.length === 0) {
+                            slotHint.textContent = 'No available slots';
+                            return;
+                        }
+
+                        slotHint.textContent = `${futureSlots.length} slot(s) available`;
+                        futureSlots.forEach(slot => {
+                            const option = document.createElement('option');
+                            option.value = slot.value;
+                            option.textContent = slot.display;
+                            timeSlotSelect.appendChild(option);
+                        });
+                    })
+                    .catch(() => {
+                        slotHint.textContent = 'Error loading slots';
+                    });
+            }
+
+            doctorSelect.addEventListener('change', loadAvailableSlots);
+            dateInput.addEventListener('change', loadAvailableSlots);
+        });
+    </script>
+}

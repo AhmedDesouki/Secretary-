@@ -1,0 +1,54 @@
+@model IEnumerable<AppointmentViewModel>
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Appointments</h1>
+    <a asp-action="CreateAppointment" class="btn btn-primary">Create New Appointment</a>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Clinic</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var appointment in Model)
+                {
+                    <tr>
+                        <td>@appointment.PatientName</td>
+                        <td>@appointment.DoctorName</td>
+                        <td>@appointment.ClinicName</td>
+                        <td>@appointment.AppointmentDate.ToString("yyyy-MM-dd")</td>
+                        <td>@appointment.StartTime.ToString(@"hh\:mm") - @appointment.EndTime.ToString(@"hh\:mm")</td>
+                        <td>@appointment.DurationMinutes min</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No appointments found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
