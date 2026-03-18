@@ -24,6 +24,7 @@ public class AppointmentService : IAppointmentService
             throw new InvalidOperationException("Cannot book appointments for past dates.");
 
         var workingHours = await _scheduleService.GetWorkingHoursAsync(doctorId, date);
+     
         if (workingHours.Count == 0)
             return [];
 
@@ -57,6 +58,11 @@ public class AppointmentService : IAppointmentService
     public async Task<AppointmentDto> CreateAsync(CreateAppointmentDto dto)
     {
         var endTime = dto.StartTime.Add(TimeSpan.FromMinutes(dto.DurationMinutes));
+        // appointment max from now : 7 days 
+        // Prevent booking appointments in the past or too far in the future
+        //var maxBookingDate = DateOnly.FromDateTime(DateTime.Today.AddDays(7));
+        
+
         var appointment = new Appointment
         {
             PatientId = dto.PatientId,
@@ -80,6 +86,9 @@ public class AppointmentService : IAppointmentService
             DurationMinutes = appointment.DurationMinutes
         };
     }
+    //max 1 w 
+    //client -->
+    //server --> 
 
     public async Task<IReadOnlyList<AppointmentDto>> GetAllAppointmentsAsync()
     {
@@ -102,6 +111,7 @@ public class AppointmentService : IAppointmentService
                 EndTime = a.EndTime,
                 DurationMinutes = a.DurationMinutes,
                 PatientName = a.Patient.Name,
+                PatientPhone = a.Patient.Phone,
                 DoctorFirstName = a.Doctor.FirstName,
                 DoctorLastName = a.Doctor.LastName,
                 ClinicName = a.Doctor.Clinic?.Name ?? string.Empty

@@ -7,5 +7,8 @@ public class CreateAppointmentDto
     public DateOnly AppointmentDate { get; set; }
     public TimeOnly StartTime { get; set; }
     public int DurationMinutes { get; set; }
+
+     
+
 }
 

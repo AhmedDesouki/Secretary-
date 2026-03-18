@@ -143,4 +143,5 @@ D:\Side_PRJs\Clinic appointment\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
 D:\Side_PRJs\Clinic appointment\obj\Debug\net8.0\staticwebassets.build.json.cache
 D:\Side_PRJs\Clinic appointment\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 D:\Side_PRJs\Clinic appointment\obj\Debug\net8.0\Clinic a.4367CCD5.Up2Date
+D:\Side_PRJs\Clinic appointment\obj\Debug\net8.0\Clinic appointment.sourcelink.json
 D:\Side_PRJs\Clinic appointment\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

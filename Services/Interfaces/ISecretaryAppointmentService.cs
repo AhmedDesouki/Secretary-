@@ -5,6 +5,7 @@ namespace Clinic_appointment.Services.Interfaces;
 public interface ISecretaryAppointmentService
 {
     Task<IReadOnlyList<AppointmentViewModel>> GetAppointmentsAsync();
+    Task<AppointmentIndexViewModel> GetAppointmentsPagedAsync(int page, int pageSize, string? phoneFilter = null);
     Task<CreateAppointmentViewModel> PopulateCreateAppointmentAsync(CreateAppointmentViewModel model, int slotDurationMinutes);
     Task CreateAppointmentAsync(CreateAppointmentViewModel model, int slotDurationMinutes);
     Task<IReadOnlyList<AvailableSlotJsonItem>> GetAvailableSlotsJsonAsync(int doctorId, DateOnly appointmentDate, int slotDurationMinutes);

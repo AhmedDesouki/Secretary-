@@ -5,8 +5,30 @@
 
 <h1 class="mb-4">Create Appointment</h1>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["PatientNotFound"] != null)
+{
+    <div class="alert alert-warning">@TempData["PatientNotFound"]</div>
+}
+
 <form asp-action="CreateAppointment" method="post" id="createAppointmentForm">
-    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+    @if (Context.Request.Method == "POST")
+    {
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+    }
 
     <div class="card mb-4">
         <div class="card-header">
@@ -26,7 +48,16 @@
                 </div>
                 <div class="col-md-3">
                     <label asp-for="Patient.Phone" class="form-label"></label>
-                    <input asp-for="Patient.Phone" class="form-control" placeholder="Phone number" />
+                    <div class="input-group">
+                        <input asp-for="Patient.Phone" class="form-control" placeholder="Phone number" />
+                        <button type="submit"
+                                class="btn btn-outline-primary"
+                                formmethod="get"
+                                formnovalidate
+                                formaction="@Url.Action("LoadPatient", "Secretary")">
+                            Load
+                        </button>
+                    </div>
                     <span asp-validation-for="Patient.Phone" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
@@ -50,6 +81,21 @@
         <div class="card-body">
             <div class="row g-3">
                 <div class="col-md-6">
+                    <label asp-for="SelectedSpecialization" class="form-label"></label>
+                    <div class="input-group">
+                        <select asp-for="SelectedSpecialization" class="form-select" id="specializationSelect">
+                            <option value="">-- All Specializations --</option>
+                            @foreach (var spec in Model.Specializations)
+                            {
+                                <option value="@spec">@spec</option>
+                            }
+                        </select>
+                      
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+
                     <label asp-for="SelectedDoctorId" class="form-label"></label>
                     <select asp-for="SelectedDoctorId" class="form-select" id="doctorSelect">
                         <option value="">-- Select Doctor --</option>
@@ -91,20 +137,174 @@
     <partial name="_ValidationScriptsPartial" />
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Get all elements
+            const specializationSelect = document.getElementById('specializationSelect');
+            const doctorSelect = document.getElementById('doctorSelect');
+            const dateInput = document.getElementById('appointmentDate');
+            const timeSlotSelect = document.getElementById('timeSlotSelect');
+            const slotHint = document.getElementById('slotHint');
+            const form = document.getElementById('createAppointmentForm');
+
+            // Handle specialization change
+            if (specializationSelect) {
+                specializationSelect.addEventListener('change', function () {
+                    // Collect all form data
+                    const formData = new FormData(form);
+                    const params = new URLSearchParams();
+
+                    // Add all form fields except validation token
+                    for (const [key, value] of formData.entries()) {
+                        if (key !== '__RequestVerificationToken' && value) {
+                            params.set(key, value);
+                        }
+                    }
+
+                    // Update specialization and remove doctor/time
+                    if (this.value) {
+                        params.set('SelectedSpecialization', this.value);
+                    }
+                    params.delete('SelectedDoctorId');
+                    params.delete('SelectedTimeSlot');
+
+                    // Redirect
+                    const url = params.toString()
+                        ? `/Secretary/CreateAppointment?${params}`
+                        : '/Secretary/CreateAppointment';
+                    window.location.href = url;
+                });
+            }
+
+            // Set date restrictions (today to 7 days from now)
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+
+            const maxDate = new Date();
+            maxDate.setDate(maxDate.getDate() + 7);
+            dateInput.max = maxDate.toISOString().split('T')[0];
+
+            // Filter out past times for today's date
+            function getFutureSlots(slots) {
+                const selectedDate = new Date(dateInput.value);
+                const today = new Date();
+
+                // If not today, return all slots
+                if (selectedDate.toDateString() !== today.toDateString()) {
+                    return slots;
+                }
+
+                // Filter out past times for today
+                const currentTime = today.getHours() + ':' + today.getMinutes().toString().padStart(2, '0');
+                return slots.filter(slot => slot.value > currentTime);
+            }
+
+            // Load available time slots
+            function loadTimeSlots() {
+                const doctorId = doctorSelect.value;
+                const date = dateInput.value;
+
+                // Reset dropdown
+                timeSlotSelect.innerHTML = '<option value="">-- Select Time --</option>';
+
+                // Check if we have both doctor and date
+                if (!doctorId || !date) {
+                    slotHint.textContent = 'Please select doctor and date';
+                    return;
+                }
+
+                slotHint.textContent = 'Loading...';
+
+                // Fetch available slots
+                fetch(`/Secretary/GetAvailableSlots?doctorId=${doctorId}&date=${date}`)
+                    .then(response => {
+                        if (!response.ok) throw new Error();
+                        return response.json();
+                    })
+                    .then(slots => {
+                        const availableSlots = getFutureSlots(slots);
+
+                        if (availableSlots.length === 0) {
+                            slotHint.textContent = 'No available slots';
+                            return;
+                        }
+
+                        slotHint.textContent = availableSlots.length + ' slot(s) available';
+
+                        availableSlots.forEach(slot => {
+                            const option = document.createElement('option');
+                            option.value = slot.value;
+                            option.textContent = slot.display;
+                            timeSlotSelect.appendChild(option);
+                        });
+                    })
+                    .catch(() => {
+                        slotHint.textContent = 'Error loading slots';
+                    });
+            }
+
+            // Add event listeners
+            doctorSelect.addEventListener('change', loadTimeSlots);
+            dateInput.addEventListener('change', loadTimeSlots);
+        });
+    </script>
+}
+@* @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('createAppointmentForm');
+            const specializationSelect = document.getElementById('specializationSelect');
             const doctorSelect = document.getElementById('doctorSelect');
             const dateInput = document.getElementById('appointmentDate');
             const timeSlotSelect = document.getElementById('timeSlotSelect');
             const slotHint = document.getElementById('slotHint');
 
-            // Set minimum date to today solve logical Error which is select old date. 
-            const today = new Date().toISOString().split('T')[0];
-            dateInput.min = today;
+            if (specializationSelect) {
+                specializationSelect.addEventListener('change', function () {
+                    const value = specializationSelect.value || '';
+
+                    // Preserve already-entered patient data (and other fields) when reloading.
+                    const params = new URLSearchParams();
+                    if (form) {
+                        const formData = new FormData(form);
+                        for (const [key, val] of formData.entries()) {
+                            if (key === '__RequestVerificationToken') continue;
+                            const str = (val ?? '').toString();
+                            if (!str) continue; // don't send empty values (avoids binding/validation noise)
+                            params.set(key, str);
+                        }
+                    }
+
+                    if (value) params.set('SelectedSpecialization', value);
+                    else params.delete('SelectedSpecialization');
+
+                    // Changing specialization should reset doctor/time selection
+                    params.delete('SelectedDoctorId');
+                    params.delete('SelectedTimeSlot');
+
+                    const url = params.toString()
+                        ? `/Secretary/CreateAppointment?${params.toString()}`
+                        : `/Secretary/CreateAppointment`;
+
+                    window.location.assign(url);
+                });
+            }
+
+               //Set minimum date to today
+            const today = new Date();
+            const minDate = today.toISOString().split('T')[0];
+            dateInput.min = minDate;
+
+            // Set maximum date to 7 days from today
+            const maxDate = new Date(today);
+            maxDate.setDate(maxDate.getDate() + 7);
+            const maxDateString = maxDate.toISOString().split('T')[0];
+            dateInput.max = maxDateString;
             
             function filterFutureSlots(slots) {
                 const now = new Date();
                 const selectedDate = new Date(dateInput.value);
                 const isToday = selectedDate.toDateString() === now.toDateString();
-
+				
                 if (!isToday) {
                     return slots;
                 }
@@ -157,4 +357,4 @@
             dateInput.addEventListener('change', loadAvailableSlots);
         });
     </script>
-}
+} *@

@@ -6,6 +6,9 @@ public class CreateAppointmentViewModel
 {
     public PatientViewModel Patient { get; set; } = new();
 
+    [Display(Name = "Specialization")]
+    public string? SelectedSpecialization { get; set; }
+
     [Required(ErrorMessage = "Please select a doctor")]
     [Display(Name = "Doctor")]
     public int? SelectedDoctorId { get; set; }
@@ -20,7 +23,11 @@ public class CreateAppointmentViewModel
     public string? SelectedTimeSlot { get; set; }
 
     public List<DoctorOptionViewModel> Doctors { get; set; } = new();
+    public List<string> Specializations { get; set; } = new();
     public List<AvailableSlotViewModel> AvailableSlots { get; set; } = new();
+
+    
+
 }
 
 public class DoctorOptionViewModel

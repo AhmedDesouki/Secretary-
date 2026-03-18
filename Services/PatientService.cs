@@ -39,4 +39,31 @@ public class PatientService : IPatientService
         };
     }
 
+    public async Task<PatientDto?> GetByPhoneAsync(string phone)
+    {
+        var trimmed = phone?.Trim() ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(trimmed))
+        {
+            return null;
+        }
+
+        var patient = await _context.Patients
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Phone == trimmed);
+
+        if (patient is null)
+        {
+            return null;
+        }
+
+        return new PatientDto
+        {
+            PatientId = patient.PatientId,
+            Name = patient.Name,
+            BirthDate = patient.BirthDate,
+            Phone = patient.Phone,
+            Email = patient.Email,
+            Address = patient.Address
+        };
+    }
 }

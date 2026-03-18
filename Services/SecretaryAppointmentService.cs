@@ -23,12 +23,14 @@ public class SecretaryAppointmentService : ISecretaryAppointmentService
     public async Task<IReadOnlyList<AppointmentViewModel>> GetAppointmentsAsync()
     {
         var appointments = await _appointmentService.GetAllAppointmentsAsync();
+       
 
         return appointments
             .Select(a => new AppointmentViewModel
             {
                 AppointmentId = a.AppointmentId,
                 PatientName = a.PatientName,
+                PatientPhone = a.PatientPhone,
                 DoctorName = $"{a.DoctorFirstName} {a.DoctorLastName}",
                 ClinicName = a.ClinicName,
                 AppointmentDate = a.AppointmentDate,
@@ -39,12 +41,41 @@ public class SecretaryAppointmentService : ISecretaryAppointmentService
             .ToList();
     }
 
+    public async Task<AppointmentIndexViewModel> GetAppointmentsPagedAsync(int page, int pageSize, string? phoneFilter = null)
+    {
+        var all = await GetAppointmentsAsync();
+
+        var trimmedPhone = phoneFilter?.Trim();
+        if (!string.IsNullOrWhiteSpace(trimmedPhone))
+        {
+            all = all
+                .Where(a => !string.IsNullOrWhiteSpace(a.PatientPhone) &&
+                            a.PatientPhone.Contains(trimmedPhone, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        var totalCount = all.Count;
+        var items = all
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        return new AppointmentIndexViewModel
+        {
+            Appointments = items,
+            CurrentPage = page,
+            PageSize = pageSize,
+            TotalCount = totalCount,
+            PhoneFilter = trimmedPhone
+        };
+    }
+
     public async Task<CreateAppointmentViewModel> PopulateCreateAppointmentAsync(
         CreateAppointmentViewModel model,
         int slotDurationMinutes)
     {
         var doctors = await _doctorService.GetAllAsync();
-        model.Doctors = doctors
+        var doctorOptions = doctors
             .Select(d => new DoctorOptionViewModel
             {
                 DoctorId = d.DoctorId,
@@ -52,6 +83,19 @@ public class SecretaryAppointmentService : ISecretaryAppointmentService
                 Specialization = d.Specialization
             })
             .ToList();
+
+        model.Specializations = doctorOptions
+            .Select(d => d.Specialization)
+            .Where(s => !string.IsNullOrWhiteSpace(s))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(s => s)
+            .ToList();
+
+        model.Doctors = string.IsNullOrWhiteSpace(model.SelectedSpecialization)
+            ? doctorOptions
+            : doctorOptions
+                .Where(d => string.Equals(d.Specialization, model.SelectedSpecialization, StringComparison.OrdinalIgnoreCase))
+                .ToList();
 
         model.AvailableSlots = [];
         if ( model.SelectedDoctorId > 0)
@@ -90,7 +134,8 @@ public class SecretaryAppointmentService : ISecretaryAppointmentService
             throw new InvalidOperationException("Selected slot is no longer available. Please choose another slot.");
         }
 
-        var patient = await _patientService.CreateAsync(new CreatePatientDto
+        var existingPatient = await _patientService.GetByPhoneAsync(model.Patient.Phone);
+        var patient = existingPatient ?? await _patientService.CreateAsync(new CreatePatientDto
         {
             Name = model.Patient.Name,
             BirthDate = model.Patient.BirthDate,

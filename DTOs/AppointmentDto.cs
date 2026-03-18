@@ -11,6 +11,7 @@ public class AppointmentDto
     public int DurationMinutes { get; set; }
 
     public string PatientName { get; set; } = string.Empty;
+    public string PatientPhone { get; set; } = string.Empty;
     public string DoctorFirstName { get; set; } = string.Empty;
     public string DoctorLastName { get; set; } = string.Empty;
     public string ClinicName { get; set; } = string.Empty;
