@@ -1,10 +1,10 @@
-using Clinic_appointment.DTOs;
+using Clinic_appointment.Models;
 
 namespace Clinic_appointment.Services.Interfaces;
 
 public interface IAppointmentService
 {
-    Task<IReadOnlyList<TimeSlotDto>> GetAvailableSlotsAsync(int doctorId, DateOnly date, int slotDurationMinutes = 30);
-    Task<AppointmentDto> CreateAsync(CreateAppointmentDto dto);
-    Task<IReadOnlyList<AppointmentDto>> GetAllAppointmentsAsync();
+    Task<IReadOnlyList<(TimeOnly StartTime, TimeOnly EndTime)>> GetAvailableSlotsAsync(int doctorId, DateOnly date, int slotDurationMinutes = 30);
+    Task<Appointment> CreateAsync(Appointment appointment);
+    Task<IReadOnlyList<Appointment>> GetAllAppointmentsAsync();
 }

@@ -1,4 +1,4 @@
-using Clinic_appointment.DTOs;
+using Clinic_appointment.Models;
 using Clinic_appointment.Services.Interfaces;
 using Clinic_appointment.ViewModels;
 
@@ -29,10 +29,10 @@ public class SecretaryAppointmentService : ISecretaryAppointmentService
             .Select(a => new AppointmentViewModel
             {
                 AppointmentId = a.AppointmentId,
-                PatientName = a.PatientName,
-                PatientPhone = a.PatientPhone,
-                DoctorName = $"{a.DoctorFirstName} {a.DoctorLastName}",
-                ClinicName = a.ClinicName,
+                PatientName = a.Patient.Name,
+                PatientPhone = a.Patient.Phone,
+                DoctorName = $"{a.Doctor.FirstName} {a.Doctor.LastName}",
+                ClinicName = a.Doctor.Clinic?.Name ?? string.Empty,
                 AppointmentDate = a.AppointmentDate,
                 StartTime = a.StartTime,
                 EndTime = a.EndTime,
@@ -135,7 +135,7 @@ public class SecretaryAppointmentService : ISecretaryAppointmentService
         }
 
         var existingPatient = await _patientService.GetByPhoneAsync(model.Patient.Phone);
-        var patient = existingPatient ?? await _patientService.CreateAsync(new CreatePatientDto
+        var patient = existingPatient ?? await _patientService.CreateAsync(new Patient
         {
             Name = model.Patient.Name,
             BirthDate = model.Patient.BirthDate,
@@ -144,12 +144,15 @@ public class SecretaryAppointmentService : ISecretaryAppointmentService
             Address = model.Patient.Address
         });
 
-        await _appointmentService.CreateAsync(new CreateAppointmentDto
+        var endTime = startTime.Add(TimeSpan.FromMinutes(slotDurationMinutes));
+
+        await _appointmentService.CreateAsync(new Appointment
         {
             PatientId = patient.PatientId,
             DoctorId = model.SelectedDoctorId.Value,
             AppointmentDate = model.AppointmentDate,
             StartTime = startTime,
+            EndTime = endTime,
             DurationMinutes = slotDurationMinutes
         });
     }
@@ -171,4 +174,3 @@ public class SecretaryAppointmentService : ISecretaryAppointmentService
             .ToList();
     }
 }
-

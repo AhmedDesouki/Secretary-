@@ -1,5 +1,4 @@
 using Clinic_appointment.Data;
-using Clinic_appointment.DTOs;
 using Clinic_appointment.Models;
 using Clinic_appointment.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +16,7 @@ public class AppointmentService : IAppointmentService
         _scheduleService = scheduleService;
     }
 
-    public async Task<IReadOnlyList<TimeSlotDto>> GetAvailableSlotsAsync(int doctorId, DateOnly date, int slotDurationMinutes = 30)
+    public async Task<IReadOnlyList<(TimeOnly StartTime, TimeOnly EndTime)>> GetAvailableSlotsAsync(int doctorId, DateOnly date, int slotDurationMinutes = 30)
     {
         // Prevent selecting past dates
         if (date < DateOnly.FromDateTime(DateTime.Today))
@@ -33,7 +32,7 @@ public class AppointmentService : IAppointmentService
             .Select(a => new { a.StartTime, a.EndTime })
             .ToListAsync();
 
-        var slots = new List<TimeSlotDto>();
+        var slots = new List<(TimeOnly StartTime, TimeOnly EndTime)>();
         var slotDuration = TimeSpan.FromMinutes(slotDurationMinutes);
 
         foreach (var (startTime, endTime) in workingHours)
@@ -46,7 +45,7 @@ public class AppointmentService : IAppointmentService
                     current < a.EndTime && slotEnd > a.StartTime);
 
                 if (!overlaps)
-                    slots.Add(new TimeSlotDto(current, slotEnd));
+                    slots.Add((current, slotEnd));
 
                 current = slotEnd;
             }
@@ -55,67 +54,25 @@ public class AppointmentService : IAppointmentService
         return slots.OrderBy(s => s.StartTime).ToList();
     }
 
-    public async Task<AppointmentDto> CreateAsync(CreateAppointmentDto dto)
+    public async Task<Appointment> CreateAsync(Appointment appointment)
     {
-        var endTime = dto.StartTime.Add(TimeSpan.FromMinutes(dto.DurationMinutes));
-        // appointment max from now : 7 days 
-        // Prevent booking appointments in the past or too far in the future
-        //var maxBookingDate = DateOnly.FromDateTime(DateTime.Today.AddDays(7));
-        
-
-        var appointment = new Appointment
-        {
-            PatientId = dto.PatientId,
-            DoctorId = dto.DoctorId,
-            AppointmentDate = dto.AppointmentDate,
-            StartTime = dto.StartTime,
-            EndTime = endTime,
-            DurationMinutes = dto.DurationMinutes
-        };
         _context.Appointments.Add(appointment);
         await _context.SaveChangesAsync();
 
-        return new AppointmentDto
-        {
-            AppointmentId = appointment.AppointmentId,
-            PatientId = appointment.PatientId,
-            DoctorId = appointment.DoctorId,
-            AppointmentDate = appointment.AppointmentDate,
-            StartTime = appointment.StartTime,
-            EndTime = appointment.EndTime,
-            DurationMinutes = appointment.DurationMinutes
-        };
+        return appointment;
     }
     //max 1 w 
     //client -->
     //server --> 
 
-    public async Task<IReadOnlyList<AppointmentDto>> GetAllAppointmentsAsync()
+    public async Task<IReadOnlyList<Appointment>> GetAllAppointmentsAsync()
     {
-        var appointments = await _context.Appointments
+        return await _context.Appointments
             .Include(a => a.Patient)
             .Include(a => a.Doctor)
                 .ThenInclude(d => d.Clinic)
             .OrderByDescending(a => a.AppointmentDate)
             .ThenBy(a => a.StartTime)
             .ToListAsync();
-
-        return appointments
-            .Select(a => new AppointmentDto
-            {
-                AppointmentId = a.AppointmentId,
-                PatientId = a.PatientId,
-                DoctorId = a.DoctorId,
-                AppointmentDate = a.AppointmentDate,
-                StartTime = a.StartTime,
-                EndTime = a.EndTime,
-                DurationMinutes = a.DurationMinutes,
-                PatientName = a.Patient.Name,
-                PatientPhone = a.Patient.Phone,
-                DoctorFirstName = a.Doctor.FirstName,
-                DoctorLastName = a.Doctor.LastName,
-                ClinicName = a.Doctor.Clinic?.Name ?? string.Empty
-            })
-            .ToList();
     }
 }

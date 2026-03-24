@@ -33,7 +33,7 @@ public class CreateDoctorViewModel
 
     [DataType(DataType.Time)]
     [Display(Name = "End")]
-    public TimeOnly EndTime { get; set; } = new(17, 0);
+    public TimeOnly EndTime { get; set; } = new(16, 0);
 
     public List<ScheduleDayInputViewModel> Days { get; set; } = ScheduleDayInputViewModel.CreateDefaultWeek();
 }

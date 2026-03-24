@@ -3,20 +3,62 @@
   "WorkspaceRootPath": "D:\\Side_PRJs\\Clinic appointment\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/./ClinicAppointmentDb/True/SqlTable/dbo.DoctorAvailabilities.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\models\\scheduleday.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:models\\scheduleday.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\models\\schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:models\\schedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\viewmodels\\doctorindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:viewmodels\\doctorindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\viewmodels\\createdoctorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:viewmodels\\createdoctorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\services\\interfaces\\ipatientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:services\\interfaces\\ipatientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\services\\interfaces\\ischeduleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:services\\interfaces\\ischeduleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\models\\doctoravailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:models\\doctoravailability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\services\\interfaces\\idoctorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:services\\interfaces\\idoctorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\services\\interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:services\\interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\controllers\\doctorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:controllers\\doctorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\services\\doctorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:services\\doctorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\services\\secretaryappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:services\\secretaryappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/./ClinicAppointmentDb/True/SqlTable/dbo.Doctors.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\controllers\\secretarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:controllers\\secretarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\controllers\\doctorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:controllers\\doctorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\services\\patientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:services\\patientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\services\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +67,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|d:\\side_prjs\\clinic appointment\\views\\secretary\\createappointment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A785AEF8-C40A-4BE1-BA7A-882F9E7C2C7F}|Clinic appointment.csproj|solutionrelative:views\\secretary\\createappointment.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -99,31 +137,179 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DoctorService.cs",
-              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Services\\DoctorService.cs",
-              "RelativeDocumentMoniker": "Services\\DoctorService.cs",
-              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Services\\DoctorService.cs",
-              "RelativeToolTip": "Services\\DoctorService.cs",
+              "Title": "dbo.DoctorAvailabilities [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/./ClinicAppointmentDb/True/SqlTable/dbo.DoctorAvailabilities.sql",
+              "ToolTip": "dbo.DoctorAvailabilities [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-03-19T12:45:35.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DoctorAvailability.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Models\\DoctorAvailability.cs",
+              "RelativeDocumentMoniker": "Models\\DoctorAvailability.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Models\\DoctorAvailability.cs",
+              "RelativeToolTip": "Models\\DoctorAvailability.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T12:43:53.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IScheduleService.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Services\\Interfaces\\IScheduleService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\IScheduleService.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Services\\Interfaces\\IScheduleService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\IScheduleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T12:35:52.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IPatientService.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Services\\Interfaces\\IPatientService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\IPatientService.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Services\\Interfaces\\IPatientService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\IPatientService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-18T22:44:56.649Z",
+              "WhenOpened": "2026-03-19T12:35:48.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IAppointmentService.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Services\\Interfaces\\IAppointmentService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\IAppointmentService.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Services\\Interfaces\\IAppointmentService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\IAppointmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T12:35:06.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateDoctorViewModel.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\ViewModels\\CreateDoctorViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\CreateDoctorViewModel.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\ViewModels\\CreateDoctorViewModel.cs",
+              "RelativeToolTip": "ViewModels\\CreateDoctorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T04:07:44.956Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "DoctorIndexViewModel.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\ViewModels\\DoctorIndexViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\DoctorIndexViewModel.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\ViewModels\\DoctorIndexViewModel.cs",
+              "RelativeToolTip": "ViewModels\\DoctorIndexViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T04:07:43.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ScheduleDay.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Models\\ScheduleDay.cs",
+              "RelativeDocumentMoniker": "Models\\ScheduleDay.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Models\\ScheduleDay.cs",
+              "RelativeToolTip": "Models\\ScheduleDay.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T04:07:21.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Schedule.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Models\\Schedule.cs",
+              "RelativeDocumentMoniker": "Models\\Schedule.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Models\\Schedule.cs",
+              "RelativeToolTip": "Models\\Schedule.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T04:07:13.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "dbo.Doctors.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/./ClinicAppointmentDb/True/SqlTable/dbo.Doctors.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/./ClinicAppointmentDb/True/SqlTable/dbo.Doctors.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-03-19T03:47:07.43Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IDoctorService.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Services\\Interfaces\\IDoctorService.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\IDoctorService.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Services\\Interfaces\\IDoctorService.cs",
+              "RelativeToolTip": "Services\\Interfaces\\IDoctorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T02:08:27.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PatientService.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Services\\PatientService.cs",
+              "RelativeDocumentMoniker": "Services\\PatientService.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Services\\PatientService.cs",
+              "RelativeToolTip": "Services\\PatientService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T01:55:00.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DoctorService.cs",
+              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Services\\DoctorService.cs",
+              "RelativeDocumentMoniker": "Services\\DoctorService.cs",
+              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Services\\DoctorService.cs",
+              "RelativeToolTip": "Services\\DoctorService.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAADwv2UAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T22:44:56.649Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "DoctorsController.cs",
               "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Controllers\\DoctorsController.cs",
               "RelativeDocumentMoniker": "Controllers\\DoctorsController.cs",
               "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Controllers\\DoctorsController.cs",
               "RelativeToolTip": "Controllers\\DoctorsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAzwAsAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-18T22:40:15.336Z"
+              "WhenOpened": "2026-03-18T22:40:15.336Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 16,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -135,49 +321,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SecretaryAppointmentService.cs",
-              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Services\\SecretaryAppointmentService.cs",
-              "RelativeDocumentMoniker": "Services\\SecretaryAppointmentService.cs",
-              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Services\\SecretaryAppointmentService.cs",
-              "RelativeToolTip": "Services\\SecretaryAppointmentService.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAkwEgAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T23:42:31.016Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 15,
               "Title": "AppointmentService.cs",
               "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Services\\AppointmentService.cs",
               "RelativeDocumentMoniker": "Services\\AppointmentService.cs",
               "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Services\\AppointmentService.cs",
               "RelativeToolTip": "Services\\AppointmentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-17T23:36:33.976Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CreateAppointment.cshtml",
-              "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Views\\Secretary\\CreateAppointment.cshtml",
-              "RelativeDocumentMoniker": "Views\\Secretary\\CreateAppointment.cshtml",
-              "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Views\\Secretary\\CreateAppointment.cshtml",
-              "RelativeToolTip": "Views\\Secretary\\CreateAppointment.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-17T22:44:36.547Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "SecretaryController.cs",
               "DocumentMoniker": "D:\\Side_PRJs\\Clinic appointment\\Controllers\\SecretaryController.cs",
               "RelativeDocumentMoniker": "Controllers\\SecretaryController.cs",
               "ToolTip": "D:\\Side_PRJs\\Clinic appointment\\Controllers\\SecretaryController.cs",
               "RelativeToolTip": "Controllers\\SecretaryController.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAkwFMAAABVAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAwwF0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-17T22:42:25.341Z"
             }

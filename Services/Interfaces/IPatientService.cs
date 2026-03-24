@@ -1,9 +1,9 @@
-using Clinic_appointment.DTOs;
+using Clinic_appointment.Models;
 
 namespace Clinic_appointment.Services.Interfaces;
 
 public interface IPatientService
 {
-    Task<PatientDto> CreateAsync(CreatePatientDto dto);
-    Task<PatientDto?> GetByPhoneAsync(string phone);
+    Task<Patient> CreateAsync(Patient patient);
+    Task<Patient?> GetByPhoneAsync(string phone);
 }
